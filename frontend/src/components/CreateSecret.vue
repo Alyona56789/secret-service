@@ -7,9 +7,12 @@
       rows="5"
     ></textarea>
     
-    <button @click="createSecret" :disabled="loading || !content">
-      {{ loading ? 'Сохраняю...' : 'Сгенерировать ссылку' }}
-    </button>
+    <button 
+  @click="createSecret" 
+  :disabled="loading || !content.trim()"
+>
+  {{ loading ? 'Сохраняю...' : 'Сгенерировать ссылку' }}
+</button>
 
     <div v-if="link" class="success">
       <p>Секрет сохранён! Ссылка:</p>
@@ -29,6 +32,12 @@ const error = ref('')
 const loading = ref(false)
 
 async function createSecret() {
+
+  if (!content.value.trim()) {
+    error.value = 'Пожалуйста, введите текст секрета.'
+    return
+  }
+  
   loading.value = true
   error.value = ''
   link.value = ''
