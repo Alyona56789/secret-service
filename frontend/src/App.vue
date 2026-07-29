@@ -1,7 +1,11 @@
+<template>
+  <CreateSecret />
+</template>
+
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import CreateSecret from './components/CreateSecret.vue'
 </script>
 
-<template>
-  <HelloWorld />
-</template>
+<style>
+body { font-family: system-ui, -apple-system, sans-serif; background: #f5f7fa; margin: 0; }
+</style>
