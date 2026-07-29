@@ -18,7 +18,8 @@ router.post('/api/secrets', (req, res) => {
     const stmt = db.prepare('INSERT INTO secrets (id, content) VALUES (?, ?)');
     stmt.run(id, encryptedContent);
 
-    const link = `http://localhost:3000/${id}`;
+    const DOMAIN = process.env.DOMAIN || 'http://localhost:3000';
+    const link = `${DOMAIN}/${id}`;
     res.status(201).json({ link });
   } catch (err) {
     console.error('Ошибка при сохранении:', err);
